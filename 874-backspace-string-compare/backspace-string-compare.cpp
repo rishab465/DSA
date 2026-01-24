@@ -1,26 +1,28 @@
 class Solution {
 public:
 
-
-    string build(string s){
-        int n = s.length()-1;
-        int count = 0;
+    string usingstack (string s){
+        int n = s.length();
+        stack<char> st;
         string ans = "";
-        for(int i=n;i>=0;i--){
+        for(int i=0;i<n;i++){
             if(s[i] == '#'){
-                count++;
-            }else if(count>0){
-                count--;
-
+                if(!st.empty()) st.pop();
             }else{
-                ans+=s[i];
+                st.push(s[i]);
             }
+            
+        }
+        
+        while(!st.empty()){
+            ans += st.top();
+            st.pop();
         }
         return ans;
     }
 
     bool backspaceCompare(string s, string t) {
-        if(build(s) == build(t)) return true;
+        if(usingstack(s) == usingstack(t)) return true;
         else return false;
     }
 };
