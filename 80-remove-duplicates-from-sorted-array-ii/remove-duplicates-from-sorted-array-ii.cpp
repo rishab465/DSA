@@ -8,12 +8,12 @@ public:
         for(int i=0;i<n;i++){
             map[nums[i]]++;
 
-            for(auto it:map){
+            
                 if(map[nums[i]]>2){
                     nums[i] = INT_MAX;
                     count--;
                 }
-            }
+            
         }
         sort(nums.begin(),nums.end());
         return count;
