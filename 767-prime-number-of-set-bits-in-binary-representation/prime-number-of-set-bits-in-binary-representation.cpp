@@ -1,38 +1,19 @@
 class Solution {
 public:
-    bool isPrime(int n){
-        if(n<=1){
-            return false;
-        }
-        for(int i=2;i<n;i++){
-            if(n%i==0){
-                return false;
-            }
-        }
-        return true;
-    }
+    
+    
     int countPrimeSetBits(int left, int right) {
+        
+        bool prime[21] = {false};
+        prime[2] = prime[3]=prime[5]=prime[7]=prime[11]=prime[13]=prime[17]=prime[19] = true;
         int count = 0;
-        for(int i=left;i<right+1;i++){
-            int integer = i;
-            string str="";
-            while(integer!=0){
-                int dig = integer%2;
-                str += to_string(dig);
-                integer/=2;
-            }
-            int num = 0;
-            for(int j=0;j<str.length();j++){
-                if(str[j]=='1'){
-                    num++;
-                }
-            }
-            
-            if(isPrime(num)){
+        for(int i=left;i<=right;i++){
+            int set_bits = __builtin_popcount(i);
+            if(prime[set_bits]){
                 count++;
             }
-            
         }
         return count;
+
     }
 };
