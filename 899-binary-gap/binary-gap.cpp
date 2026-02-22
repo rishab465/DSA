@@ -14,16 +14,15 @@ public:
         int ans = 0;
         int count = 0;
         for(int i = 0; i < str.length(); i++){
-            if(str[i] == '1'){
-                if(isOne){
-                    ans = max(ans, count + 1);  // +1 gives distance
-                }
-                isOne = true;
-                count = 0;
+           if(str[i] == '1'){
+            if(isOne){
+                ans = max(ans, count+1);
             }
-            else if(isOne){
-                count++;
-            }
+            isOne = true;
+            count = 0;
+           }else if (isOne){
+            count++;
+           }
         }
         return ans;
     }
