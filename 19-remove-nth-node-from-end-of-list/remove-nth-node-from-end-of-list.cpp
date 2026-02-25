@@ -13,36 +13,35 @@ public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
        
         
-        ListNode* fast = head;
-        ListNode* slow = head;
+       ListNode* temp = head;
+       
+       ListNode* fast = head;
+       ListNode* slow  = head;
+
+
         
 
-        int i = 0;
-        while(i<n){
-            fast = fast->next;
-            i++;
-        }
+       for(int i=0;i<n;i++){
+        fast = fast->next;
 
-        if(fast == NULL) {
-        ListNode* del = head;
+       }
+
+       if(fast == NULL){
+        ListNode* dele = head;
         head = head->next;
-        delete del;
+        delete dele;
         return head;
-        }
+       }
 
-        while(fast!=NULL&&fast->next!=NULL){
-            fast=fast->next;
-            slow=slow->next;
-        }
+       while(fast != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next;
+       }
 
-        ListNode* del = slow->next;
-        slow->next = slow->next->next;
-        delete del;
-
-        return head;
-
-
+       ListNode* del = slow->next;
+       slow->next = slow->next->next;
+       delete del;
        
-
+    return head;
     }
 };
