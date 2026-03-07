@@ -1,24 +1,39 @@
 class Solution {
 public:
     int minOperations(string s) {
-        int start0 = 0;
-        int start1 = 0;
-
-        for (int i = 0; i < s.size(); i++) {
-
-            if (i % 2 == 0) {
-                if (s[i] != '0')
-                    start0++;
-                if (s[i] != '1')
-                    start1++;
-            } else {
-                if (s[i] != '1')
-                    start0++;
-                if (s[i] != '0')
-                    start1++;
+        int n = s.length();
+        string str(n,' ');
+        string str1(n,' ');
+        bool add = true;
+        for(int i=0;i<n;i++){
+            if(add){
+                str[i] = '0';
+                str1[i] = '1';
+                add = false;
+                
+            }else{
+                str[i] ='1';
+                str1[i] ='0';
+                add = true;
+                
             }
         }
 
-        return min(start0, start1);
+        int ans = 0;
+        int ans1 = 0;
+
+        for(int i=0;i<n;i++){
+            if(s[i]!=str[i]){
+                ans++;
+            }
+            if(s[i]!=str1[i]){
+                ans1++;
+            }
+        }
+
+        int mn = min(ans , ans1);
+        return mn;
+
+
     }
 };
