@@ -1,33 +1,30 @@
 class Solution {
 public:
+    vector<vector<int>>ans;
 
-    vector<vector<int>> result;
-
-    void getAllSubsets(vector<int> nums ,vector<int> temp ,int i){
-        
+    void genSub(vector<int>& nums , int i , vector<int> result ){
         if(i>=nums.size()){
-            result.push_back(temp);
+            ans.push_back(result);
             return;
         }
+        result.push_back(nums[i]);
+        genSub(nums , i+1 , result);
 
 
-        temp.push_back(nums[i]);
-        getAllSubsets(nums , temp , i+1);
-        
-        temp.pop_back();
-        getAllSubsets(nums , temp , i+1);
+        result.pop_back();
+        genSub(nums , i+1 , result );
+
+
 
     }
 
+
     vector<vector<int>> subsets(vector<int>& nums) {
-       
+       int n = nums.size();
+       vector<int>result;
+       genSub(nums , 0 , result);
 
-       vector<int> temp;
+       return ans;
 
-       getAllSubsets(nums , temp , 0);
-
-
-        return result;
-       
     }
 };
