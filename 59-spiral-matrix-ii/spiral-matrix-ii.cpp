@@ -24,11 +24,11 @@ public:
                 mat[erow][i] = ins;
                 ins++;
             }
-            if(srow<erow){
+            
                 for(int i=erow-1;i>srow;i--){
                 mat[i][scol] = ins;
                 ins++;
-            }
+            
             }
             
             srow++;
