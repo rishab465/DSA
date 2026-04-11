@@ -1,23 +1,31 @@
 class Solution {
 public:
     int minimumDistance(vector<int>& nums) {
-        int n = nums.size();
-        int mn = INT_MAX;
-        for(int i=0;i<n;i++){
-            for(int j=i+1;j<n;j++){
-                for(int k=j+1;k<n;k++){
-                    if(nums[i] == nums[j] && nums[j] == nums[k]){
-                        int ans = abs(j-i) + abs(k-i) + (k-j);
-                        mn = min(mn , ans);
-                    }
-                }
+    unordered_map<int, pair<int,int>> mp;
+    int mn = INT_MAX;
+
+    for(int k = 0; k < nums.size(); k++) {
+        int val = nums[k];
+
+        if(mp.find(val) != mp.end()) {
+            int i = mp[val].first;
+            int j = mp[val].second;
+
+            // we already have two previous occurrences
+            if(i != -1) {
+                int ans = 2 * (k - i);
+                mn = min(mn, ans);
             }
+
+            // shift window
+            mp[val] = {j, k};
+        } 
+        else {
+            mp[val] = {-1, k};
         }
-        if(mn == INT_MAX){
-            return -1;
-        }else{
-            return mn;
-        }
-        
     }
+
+    return mn == INT_MAX ? -1 : mn;
+}
+    
 };
