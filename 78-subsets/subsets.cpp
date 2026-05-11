@@ -1,30 +1,26 @@
 class Solution {
 public:
-    vector<vector<int>>ans;
+    vector<vector<int>>global;
 
-    void genSub(vector<int>& nums , int i , vector<int> result ){
-        if(i>=nums.size()){
-            ans.push_back(result);
+    void backtrack(vector<int> nums , int i , int n , vector<int>temp){
+        if(i==n){
+            global.push_back(temp);
             return;
         }
-        result.push_back(nums[i]);
-        genSub(nums , i+1 , result);
 
-
-        result.pop_back();
-        genSub(nums , i+1 , result );
-
-
+        temp.push_back(nums[i]);
+        backtrack(nums , i+1,n,temp);
+        temp.pop_back();
+        backtrack(nums, i+1,n,temp);
 
     }
 
-
     vector<vector<int>> subsets(vector<int>& nums) {
-       int n = nums.size();
-       vector<int>result;
-       genSub(nums , 0 , result);
+        int n = nums.size();
+        vector<int>temp;
+        backtrack(nums , 0 , n,temp);
+        return global;
 
-       return ans;
-
+        
     }
 };
