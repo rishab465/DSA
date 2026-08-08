@@ -15,14 +15,13 @@ public:
             }
 
             if(pro % t == 0 ){
-                ans = n;
-                break;
+                return n;
             }
 
             n++;
             
             
         }
-        return ans;
+        return 0;
     }
 };
