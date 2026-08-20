@@ -5,9 +5,9 @@ public:
         vector<int>arr1;
         vector<int>arr2;
 
-        if(n<3){
-            return nums;
-        }
+        // if(n<3){
+        //     return nums;
+        // }
 
         arr1.push_back(nums[0]);
         arr2.push_back(nums[1]);
