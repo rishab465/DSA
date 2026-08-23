@@ -1,29 +1,32 @@
 class Solution {
 public:
+
+
+
+
     bool isPalindrome(string s) {
-        string s1 = "";
-
-        for(int i=0;i<s.length();i++){
-
-            if(isalnum(s[i])){
-                s1 += tolower(s[i]);
-            }
-
-
-        }
+        int n = s.length();
 
         int left = 0;
-        int right = s1.length()-1;
-
-        while(left <= right){
-            if(s1[left] != s1[right]){
+        
+        string str = "";
+        for(int i=0;i<n;i++){
+            if(!isalnum(s[i])) continue;
+            str += tolower(s[i]); 
+        }
+        int right = str.length()-1;
+        while(left < right){
+            
+            
+                if(str[left] != str[right]){
                 return false;
             }
+            
+
             left++;
             right--;
+            
         }
-
-
         return true;
     }
 };
